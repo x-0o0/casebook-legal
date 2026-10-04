@@ -58,7 +58,7 @@
     <tr><td>비활성화한 계정의 모든 정보</td><td>비활성화한 날부터 3개월. 그 안에 다시 로그인하면 계정이 다시 활성화되고, 3개월이 지나면 자동으로 지웁니다.</td></tr>
     <tr><td>탈퇴 사유</td><td>계정과 연결되지 않은 통계 자료로 서비스를 운영하는 동안 보관합니다.</td></tr>
     <tr><td>서버 접속 기록</td><td>수탁자(Supabase)의 보관 정책에 따라 짧은 기간 보관한 뒤 자동으로 지웁니다.</td></tr>
-    <tr><td>신고 알림 메시지(Slack)</td><td>신고 처리를 마친 뒤 운영자가 지웁니다.</td></tr>
+    <tr><td>운영 알림 메시지(Slack)</td><td>신고 처리와 확인을 마친 뒤 운영자가 지웁니다.</td></tr>
   </tbody>
 </table>
 </div>
@@ -80,7 +80,7 @@
   <thead><tr><th>수탁자</th><th>위탁 업무</th></tr></thead>
   <tbody>
     <tr><td>Supabase, Inc.</td><td>회원 인증, 데이터베이스, 파일 저장, 서버 기능 운영</td></tr>
-    <tr><td>Slack Technologies, LLC</td><td>새 신고를 운영자에게 알리는 메시지 전달</td></tr>
+    <tr><td>Slack Technologies, LLC</td><td>새 신고, 가입, 계정 비활성화·삭제를 운영자에게 알리는 메시지 전달</td></tr>
   </tbody>
 </table>
 </div>
@@ -92,7 +92,7 @@
   <thead><tr><th>이전받는 자</th><th>국가</th><th>항목</th><th>시기와 방법</th><th>목적</th><th>보유 기간</th></tr></thead>
   <tbody>
     <tr><td>Supabase, Inc.</td><td>미국(데이터 저장 위치는 대한민국 서울 리전)</td><td>1항의 서버 처리 정보 전부</td><td>서비스 이용 시 네트워크로 전송</td><td>5항의 위탁 업무</td><td>2항과 같음</td></tr>
-    <tr><td>Slack Technologies, LLC</td><td>미국</td><td>신고 대상 사건 제목, 작성자·신고자 닉네임, 내부 식별자, 신고 사유</td><td>신고가 접수될 때 네트워크로 전송</td><td>운영자에게 신고 알림</td><td>신고 처리 후 운영자가 삭제</td></tr>
+    <tr><td>Slack Technologies, LLC</td><td>미국</td><td>신고: 사건 제목, 작성자·신고자 닉네임, 내부 식별자, 신고 사유<br>가입·비활성화·삭제: 이름 또는 닉네임, 내부 식별자, 자동 삭제 예정일(탈퇴 사유는 보내지 않음)</td><td>신고 접수, 가입, 비활성화·삭제가 일어날 때 네트워크로 전송</td><td>운영자에게 운영 알림</td><td>확인을 마친 뒤 운영자가 삭제</td></tr>
   </tbody>
 </table>
 </div>
