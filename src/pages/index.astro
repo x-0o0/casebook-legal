@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import archive from '../assets/images/archive-building.jpg';
 import postOffice from '../assets/images/post-office.jpg';
-import { APP_STORE_URL, getPosts, url } from '../consts';
+import { APP_STORE_URL, TESTFLIGHT_URL, getPosts, url } from '../consts';
 
 const posts = (await getPosts()).slice(0, 2);
 ---
@@ -16,6 +16,7 @@ const posts = (await getPosts()).slice(0, 2);
       <p class="lede">사건 현장을 조사하고 누가 · 왜 · 어떻게를 추리하세요. 직접 만든 사건은 공공 사건기록보관소에서 다른 탐정과 나눠요.</p>
       <div class="cta">
         {APP_STORE_URL && <a class="pill store" href={APP_STORE_URL}>App Store에서 받기</a>}
+        {TESTFLIGHT_URL && <a class="pill store" href={TESTFLIGHT_URL} target="_blank" rel="noopener">베타 체험하기 (TestFlight)</a>}
         <a class="more" href={url('blog/')}>개발 블로그 읽기 ›</a>
       </div>
       <p class="platforms">iPhone · iPad · Mac · Apple Vision Pro</p>
