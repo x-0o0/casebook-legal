@@ -65,6 +65,7 @@ const posts = (await getPosts()).slice(0, 2);
             <li>Apple Vision Pro: 앱의 계정 화면에서 문의 방법을 안내해요</li>
           </ul>
           <p class="note">계정 비활성화와 삭제는 앱의 설정 › 계정 › 계정 삭제에서 언제든 할 수 있어요.</p>
+          <p class="note">앱을 열 수 없다면 <a href={url('privacy.html#p11')}>개인정보 처리방침의 문의처</a>로 연락해 주세요.</p>
         </div>
         <Image class="support-image" src={postOffice} alt="빗속의 중앙우체국 건물" widths={[640, 1024]} sizes="(max-width: 734px) 100vw, 500px" />
       </section>
@@ -117,6 +118,8 @@ const posts = (await getPosts()).slice(0, 2);
   .support-text p { margin: 0; font-size: 19px; }
   .support-text ul { margin: 4px 0 0; padding-left: 1.1em; color: var(--dark-sub); font-size: 15px; }
   .support-text .note { font-size: 15px; color: var(--dark-sub); }
+  .support-text a { color: var(--dark-fg); text-decoration: underline; }
+  .support-text a:hover { color: var(--dark-fg); opacity: 0.8; }
   .support-image { flex: 1 1 380px; min-width: 0; max-width: 100%; min-height: 320px; object-fit: cover; }
 
   @media (max-width: 734px) {
