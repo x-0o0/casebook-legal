@@ -39,6 +39,22 @@ const links = [
   </nav>
 </header>
 
+<script>
+  // 메뉴 바깥을 누르거나 Esc를 누르면 메뉴를 닫는다.
+  const menu = document.querySelector<HTMLDetailsElement>('.site-header .menu');
+  if (menu) {
+    document.addEventListener('click', (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>
+
 <style>
   .site-header {
     position: relative;
