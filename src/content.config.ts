@@ -11,7 +11,7 @@ const blog = defineCollection({
     date: z.coerce.date(),
     category: z.enum(categories),
     summary: z.string(),
-    // src/assets/images 안의 파일 이름 (예: post-office.jpg)
+    // src/assets/images 안의 파일 이름 (예: devlog-cover.webp). 개발일지는 모두 devlog-cover.webp를 쓴다.
     cover: z.string().optional(),
   }),
 });

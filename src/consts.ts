@@ -21,7 +21,7 @@ export async function getPosts() {
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpg,jpeg,png}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpg,jpeg,png,webp}', { eager: true });
 
 export function coverImage(name?: string) {
   return name ? images[`/src/assets/images/${name}`]?.default : undefined;
