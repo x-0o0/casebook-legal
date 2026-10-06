@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { coverImage, formatDate, postUrl } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const cover = coverImage(post.data.cover);
+---
+<li data-category={post.data.category}>
+  <a href={postUrl(post)}>
+    {cover && <Image src={cover} alt="" width={240} />}
+    <div class="text">
+      <span class="eyebrow">{post.data.category}</span>
+      <strong>{post.data.title}</strong>
+      <span class="summary">{post.data.summary}</span>
+    </div>
+    <span class="meta date">{formatDate(post.data.date)}</span>
+  </a>
+</li>
+
+<style>
+  li + li a { border-top: 1px solid var(--line-soft); }
+  li[hidden] { display: none; }
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-items: center;
+    padding: 20px 24px;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  a:hover { color: var(--fg); text-decoration: none; }
+  a:hover strong { text-decoration: underline; }
+  img { width: 120px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; }
+  .text { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  strong { font-size: 19px; font-weight: 600; }
+  .summary { font-size: 15px; color: var(--muted); }
+  .date { white-space: nowrap; }
+</style>

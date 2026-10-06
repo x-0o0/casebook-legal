@@ -1,0 +1,59 @@
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
+  --tile: #ffffff;
+  --fill: #e8e8ed;
+  --fg: #1d1d1f;
+  --fg-2: #424245;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --line-soft: #e8e8ed;
+  --link: #6e6e73;
+  --link-hover: #1d1d1f;
+  --button-bg: #1d1d1f;
+  --button-fg: #ffffff;
+  --bar: rgba(251, 251, 253, 0.8);
+  --bar-line: rgba(0, 0, 0, 0.08);
+  --shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* 소개 영역과 중앙우체국 타일은 두 모드 모두 어두운 바탕 */
+  --dark-bg: #000000;
+  --dark-fg: #f5f5f7;
+  --dark-muted: #86868b;
+  --dark-link: #8a8a8e;
+  --dark-sub: #a1a1a6;
+
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --radius: 18px;
+  --radius-sm: 14px;
+  --width: 1024px;
+  --gutter: 22px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --bg-alt: #101010;
+    --tile: #1c1c1e;
+    --fill: #2c2c2e;
+    --fg: #f5f5f7;
+    --fg-2: #d2d2d7;
+    --muted: #a1a1a6;
+    --line: #424245;
+    --line-soft: #2c2c2e;
+    --link: #8a8a8e;
+    --link-hover: #f5f5f7;
+    --button-bg: #f5f5f7;
+    --button-fg: #1d1d1f;
+    --bar: rgba(22, 22, 23, 0.8);
+    --bar-line: rgba(255, 255, 255, 0.1);
+    --shadow: none;
+    --dark-bg: #161617;
+    color-scheme: dark;
+  }
+}
+
+@media (max-width: 734px) {
+  :root { --gutter: 16px; }
+}

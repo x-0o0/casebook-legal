@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { coverImage, formatDate, postUrl } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  feature?: boolean;
+  label?: string;
+}
+
+const { post, feature = false, label } = Astro.props;
+const cover = coverImage(post.data.cover);
+---
+<a class:list={['tile', 'card', { feature }]} href={postUrl(post)} data-category={post.data.category}>
+  {cover && (
+    <Image src={cover} alt="" widths={[480, 960]} sizes={feature ? '(max-width: 734px) 100vw, 600px' : '(max-width: 734px) 100vw, 480px'} />
+  )}
+  <div class="body">
+    <span class="eyebrow">{label ?? post.data.category}</span>
+    <strong>{post.data.title}</strong>
+    {feature && <span class="summary">{post.data.summary}</span>}
+    <span class="meta">{formatDate(post.data.date)}</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .body { padding: 24px 28px 30px; display: flex; flex-direction: column; gap: 6px; }
+  strong { font-size: 24px; line-height: 1.17; font-weight: 600; }
+  .summary { color: var(--fg-2); }
+
+  .feature { flex-direction: row; flex-wrap: wrap; }
+  .feature img { flex: 3 1 420px; min-width: 0; aspect-ratio: 16 / 10; }
+  .feature .body { flex: 2 1 300px; min-width: 0; padding: 36px; gap: 10px; justify-content: center; }
+  .feature strong { font-size: 32px; line-height: 1.125; }
+
+  @media (max-width: 734px) {
+    .body { padding: 18px 20px 22px; gap: 4px; }
+    strong { font-size: 21px; line-height: 1.2; }
+    .feature .body { padding: 22px 20px 26px; }
+    .feature strong { font-size: 24px; }
+  }
+</style>

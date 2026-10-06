@@ -1,0 +1,70 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Props {
+  /** 탭 제목 */
+  title: string;
+  current: 'privacy' | 'terms';
+  toc: { id: string; text: string }[];
+}
+
+const { title, current, toc } = Astro.props;
+---
+<BaseLayout title={title} current={current}>
+  <section class="intro">
+    <div class="wrap">
+      <slot name="header" />
+    </div>
+  </section>
+  <div class="wrap columns">
+    <aside>
+      <TableOfContents title="목차" items={toc} />
+    </aside>
+    <main class="prose">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro { background: var(--bg-alt); }
+  .intro .wrap { padding-top: 56px; padding-bottom: 48px; }
+  .intro :global(h1) { margin: 0; font-size: 48px; line-height: 1.08; }
+  .intro :global(p) { margin: 8px 0 0; color: var(--muted); }
+
+  .columns {
+    padding-top: 48px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  aside { flex: 1 1 220px; min-width: 0; position: sticky; top: 24px; }
+  main { flex: 999 1 560px; min-width: 0; }
+  main > :global(:first-child) { margin-top: 0; }
+
+  /* 원문의 요약 상자와 바닥 줄 */
+  main :global(.summary) {
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    background: var(--bg-alt);
+    color: var(--fg-2);
+  }
+  main :global(.summary ul) { margin: 0; }
+  main :global(footer) {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 734px) {
+    .intro .wrap { padding-top: 40px; padding-bottom: 32px; }
+    .intro :global(h1) { font-size: 34px; line-height: 1.12; }
+    .columns { padding-top: 32px; gap: 32px; }
+    aside { position: static; padding: 18px 20px; border-radius: var(--radius-sm); background: var(--bg-alt); }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { url } from '../consts';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: 'blog' | 'privacy' | 'terms';
+  alt?: boolean;
+  stickyHeader?: boolean;
+}
+
+const {
+  title,
+  description = '사건 현장을 조사하고 누가 · 왜 · 어떻게를 추리하는 추리 게임 Casebook',
+  current,
+  alt = false,
+  stickyHeader = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <link rel="icon" href={url('favicon.svg')} type="image/svg+xml">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonical}>
+</head>
+<body class:list={{ alt }}>
+  <SiteHeader current={current} sticky={stickyHeader} />
+  <slot />
+  <SiteFooter />
+</body>
+</html>

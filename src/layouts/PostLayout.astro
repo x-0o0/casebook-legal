@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import { coverImage, formatDate, postUrl, readingMinutes, url } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  headings: MarkdownHeading[];
+  previous?: CollectionEntry<'blog'>;
+  next?: CollectionEntry<'blog'>;
+}
+
+const { post, headings, previous, next } = Astro.props;
+const { title, summary, category, date } = post.data;
+const cover = coverImage(post.data.cover);
+const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text: h.text }));
+---
+<BaseLayout title={`${title} · Casebook 개발 블로그`} description={summary} current="blog">
+  <div class="wrap columns">
+    <article>
+      <a class="back" href={url('blog/')}>‹ 개발 블로그</a>
+      <header>
+        <span class="meta-line">{category} · <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time> · {readingMinutes(post.body)}분</span>
+        <h1>{title}</h1>
+        <p class="lede">{summary}</p>
+      </header>
+      {cover && <Image class="cover" src={cover} alt="" widths={[720, 1280]} sizes="(max-width: 734px) 100vw, 680px" loading="eager" />}
+      <div class="prose">
+        <slot />
+      </div>
+      {(previous || next) && (
+        <nav class="pager" aria-label="이전 · 다음 글">
+          {previous && (
+            <a href={postUrl(previous)}><span>이전 글</span><strong>{previous.data.title}</strong></a>
+          )}
+          {next && (
+            <a href={postUrl(next)}><span>다음 글</span><strong>{next.data.title}</strong></a>
+          )}
+        </nav>
+      )}
+    </article>
+    {toc.length > 1 && (
+      <aside>
+        <TableOfContents title="이 글에서" items={toc} />
+      </aside>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .columns {
+    padding-top: 48px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  article { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+  aside { flex: 1 1 200px; min-width: 0; padding-top: 44px; position: sticky; top: 24px; }
+  .back { font-size: 14px; text-decoration: none; }
+  header { display: flex; flex-direction: column; gap: 12px; }
+  .meta-line { font-size: 14px; font-weight: 600; color: var(--muted); }
+  h1 { margin: 0; font-size: 44px; line-height: 1.12; }
+  .lede { margin: 0; font-size: 21px; line-height: 1.4; color: var(--muted); }
+  .cover { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
+  .prose :global(h2:first-child) { margin-top: 8px; }
+
+  .pager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .pager a {
+    flex: 1 1 240px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-alt);
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .pager a:hover strong { text-decoration: underline; }
+  .pager span { font-size: 12px; color: var(--muted); }
+  .pager strong { font-size: 17px; font-weight: 600; }
+
+  @media (max-width: 734px) {
+    .columns { padding-top: 28px; }
+    h1 { font-size: 32px; }
+    .lede { font-size: 19px; }
+    aside { display: none; }
+  }
+</style>

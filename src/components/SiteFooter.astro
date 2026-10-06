@@ -1,0 +1,32 @@
+---
+import { url } from '../consts';
+---
+<footer class="site-footer">
+  <div class="wrap row">
+    <span>Casebook 운영팀</span>
+    <nav aria-label="바닥글">
+      <a href={url('privacy.html')}>개인정보 처리방침</a>
+      <span aria-hidden="true">|</span>
+      <a href={url('terms.html')}>이용약관</a>
+      <span aria-hidden="true">|</span>
+      <a href={url('blog/')}>개발 블로그</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--bg-alt); border-top: 1px solid var(--line); }
+  .row {
+    padding-top: 18px;
+    padding-bottom: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 1.33;
+    color: var(--muted);
+  }
+  nav { display: flex; flex-wrap: wrap; gap: 0 8px; }
+  a { color: var(--fg-2); text-decoration: none; }
+</style>

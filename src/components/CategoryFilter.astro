@@ -1,0 +1,47 @@
+---
+import { categories } from '../content.config';
+
+interface Props {
+  /** 걸러 낼 글 목록의 선택자 */
+  target: string;
+}
+
+const { target } = Astro.props;
+---
+<div class="filter" role="group" aria-label="분류" data-target={target}>
+  <button type="button" aria-pressed="true" data-category="">전체</button>
+  {categories.map((category) => (
+    <button type="button" aria-pressed="false" data-category={category}>{category}</button>
+  ))}
+</div>
+
+<script>
+  for (const group of document.querySelectorAll<HTMLElement>('.filter')) {
+    const items = document.querySelectorAll<HTMLElement>(`${group.dataset.target} [data-category]`);
+    const buttons = group.querySelectorAll<HTMLButtonElement>('button');
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+        for (const b of buttons) b.setAttribute('aria-pressed', String(b === button));
+        for (const item of items) item.hidden = !!category && item.dataset.category !== category;
+        group.dispatchEvent(new CustomEvent('filter', { bubbles: true, detail: category }));
+      });
+    }
+  }
+</script>
+
+<style>
+  .filter { display: flex; flex-wrap: wrap; gap: 8px; }
+  button {
+    min-height: 36px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 980px;
+    background: var(--fill);
+    color: var(--fg);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button[aria-pressed='true'] { background: var(--button-bg); color: var(--button-fg); }
+</style>

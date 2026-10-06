@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  items: { id: string; text: string }[];
+}
+
+const { title, items } = Astro.props;
+---
+<nav class="toc" aria-label={title}>
+  <strong class="eyebrow">{title}</strong>
+  <ol>
+    {items.map((item) => <li><a href={`#${item.id}`}>{item.text}</a></li>)}
+  </ol>
+</nav>
+
+<script>
+  // 지금 읽는 부분을 목차에 굵게 표시한다.
+  for (const toc of document.querySelectorAll<HTMLElement>('.toc')) {
+    const links = [...toc.querySelectorAll<HTMLAnchorElement>('a')];
+    const targets = links
+      .map((a) => document.getElementById(a.getAttribute('href')!.slice(1)))
+      .filter((el): el is HTMLElement => !!el);
+    const mark = () => {
+      let current = targets[0];
+      for (const el of targets) if (el.getBoundingClientRect().top < 120) current = el;
+      for (const a of links) {
+        if (current && a.getAttribute('href') === `#${current.id}`) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      }
+    };
+    addEventListener('scroll', mark, { passive: true });
+    mark();
+  }
+</script>
+
+<style>
+  .toc { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+  ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  a { color: var(--fg-2); text-decoration: none; }
+  a:hover { color: var(--fg); }
+  a[aria-current='true'] { color: var(--fg); font-weight: 600; }
+</style>

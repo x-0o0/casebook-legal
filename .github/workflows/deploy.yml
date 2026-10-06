@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Build with Astro
+        uses: withastro/action@v6
+        with:
+          # 저장소에 잠금 파일이 없어서 패키지 관리자를 직접 지정한다.
+          package-manager: npm
+      - name: Check legal page paths
+        # App Store Connect에 등록한 주소가 빌드 결과에 그대로 있는지 확인한다.
+        run: test -f dist/privacy.html && test -f dist/terms.html && test -f dist/index.html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
