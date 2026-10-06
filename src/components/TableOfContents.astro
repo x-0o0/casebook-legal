@@ -23,12 +23,17 @@ const { title, items } = Astro.props;
     const mark = () => {
       let current = targets[0];
       for (const el of targets) if (el.getBoundingClientRect().top < 120) current = el;
+      // 페이지 끝이라 링크로 들어온 절이 위까지 올라오지 못하면, 화면에 보이는 그 절을 표시한다.
+      const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+      const linked = targets.find((el) => `#${el.id}` === decodeURIComponent(location.hash));
+      if (atBottom && linked && linked.getBoundingClientRect().top < innerHeight) current = linked;
       for (const a of links) {
         if (current && a.getAttribute('href') === `#${current.id}`) a.setAttribute('aria-current', 'true');
         else a.removeAttribute('aria-current');
       }
     };
     addEventListener('scroll', mark, { passive: true });
+    addEventListener('hashchange', mark);
     mark();
   }
 </script>
