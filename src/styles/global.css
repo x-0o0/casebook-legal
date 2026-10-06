@@ -92,6 +92,20 @@ a.tile:hover strong { text-decoration: underline; }
   background: var(--bg-alt);
   font: 0.9em ui-monospace, 'SF Mono', Menlo, monospace;
 }
+.prose pre {
+  margin: 0 0 24px;
+  padding: 18px 22px;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  font: 14px/1.6 ui-monospace, 'SF Mono', Menlo, monospace;
+  letter-spacing: 0;
+}
+.prose pre.astro-code { background-color: var(--bg-alt) !important; }
+.prose pre code { padding: 0; border-radius: 0; background: none; font: inherit; }
+.prose blockquote code { background: var(--fill); }
+@media (prefers-color-scheme: dark) {
+  .prose pre.astro-code, .prose pre.astro-code span { color: var(--shiki-dark) !important; }
+}
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 
 .table-wrap {

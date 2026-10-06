@@ -9,4 +9,10 @@ export default defineConfig({
     // 파일 이름을 그대로 쓴다. (privacy.astro → privacy.html, blog/index.astro → blog/index.html)
     format: 'preserve',
   },
+  markdown: {
+    shikiConfig: {
+      // 코드 색은 시스템의 밝은 · 어두운 모드를 따른다. (global.css 참고)
+      themes: { light: 'github-light', dark: 'github-dark' },
+    },
+  },
 });
