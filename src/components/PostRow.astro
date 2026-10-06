@@ -12,7 +12,7 @@ const cover = coverImage(post.data.cover);
 ---
 <li data-category={post.data.category}>
   <a href={postUrl(post)}>
-    {cover && <Image src={cover} alt="" width={240} />}
+    {cover && <Image src={cover} alt="" data-cover={post.data.cover} width={240} />}
     <div class="text">
       <span class="eyebrow">{post.data.category}</span>
       <strong>{post.data.title}</strong>

@@ -67,6 +67,9 @@ h1, h2, h3 { font-weight: 600; text-wrap: balance; }
 a.tile:hover { color: var(--fg); text-decoration: none; }
 a.tile:hover strong { text-decoration: underline; }
 
+/* 개발일지 커버는 3:1이라 카드(16:9)에서는 램프가 있는 왼쪽을 남긴다. */
+img[data-cover='devlog-cover.webp'] { object-position: 30% 50%; }
+
 .eyebrow { font-size: 12px; font-weight: 600; color: var(--muted); }
 .meta { font-size: 14px; color: var(--muted); }
 

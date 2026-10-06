@@ -16,6 +16,8 @@ interface Props {
 const { post, headings, previous, next } = Astro.props;
 const { title, summary, category, date } = post.data;
 const cover = coverImage(post.data.cover);
+// 2:1보다 넓은 그림(개발일지 커버 등)은 글 화면에서 자르지 않고 원래 비율로 보여 준다.
+const coverRatio = cover && cover.width / cover.height > 2 ? `${cover.width} / ${cover.height}` : undefined;
 const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text: h.text }));
 ---
 <BaseLayout title={`${title} · Casebook 개발 블로그`} description={summary} current="blog">
@@ -27,7 +29,7 @@ const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text
         <h1>{title}</h1>
         <p class="lede">{summary}</p>
       </header>
-      {cover && <Image class="cover" src={cover} alt="" widths={[720, 1280]} sizes="(max-width: 734px) 100vw, 680px" loading="eager" />}
+      {cover && <Image class="cover" src={cover} alt="" style={coverRatio && `aspect-ratio: ${coverRatio}`} widths={[720, 1280]} sizes="(max-width: 734px) 100vw, 680px" loading="eager" />}
       <div class="prose">
         <slot />
       </div>

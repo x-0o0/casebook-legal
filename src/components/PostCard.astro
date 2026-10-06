@@ -14,7 +14,7 @@ const cover = coverImage(post.data.cover);
 ---
 <a class:list={['tile', 'card', { feature }]} href={postUrl(post)} data-category={post.data.category}>
   {cover && (
-    <Image src={cover} alt="" widths={[480, 960]} sizes={feature ? '(max-width: 734px) 100vw, 600px' : '(max-width: 734px) 100vw, 480px'} />
+    <Image src={cover} alt="" data-cover={post.data.cover} widths={[480, 960]} sizes={feature ? '(max-width: 734px) 100vw, 600px' : '(max-width: 734px) 100vw, 480px'} />
   )}
   <div class="body">
     <span class="eyebrow">{label ?? post.data.category}</span>
