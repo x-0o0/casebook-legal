@@ -17,6 +17,8 @@ const blog = defineCollection({
       summary: z.string(),
       // src/assets/images 안의 파일 이름 (예: writing-good-prompts-cover.webp)
       cover: z.string().optional(),
+      // 글쓴이(선택). 적으면 글 화면의 머리 줄에 보인다 (예: taekssi)
+      author: z.string().optional(),
     })
     .refine((post) => post.category !== '개발일지' || post.cover === undefined || post.cover === DEVLOG_COVER, {
       message: `개발일지 글의 cover는 ${DEVLOG_COVER}만 쓸 수 있어요. 비워 두면 자동으로 들어가요.`,
