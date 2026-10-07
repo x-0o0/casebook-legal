@@ -3,6 +3,7 @@ title: "코딩 에이전트와 함께 멀티플랫폼 앱 출시 준비하기"
 date: 2026-10-04
 category: 작업 기록
 summary: visionOS 프로토타입을 iPhone, iPad, Mac, Apple Vision Pro 앱으로 키우면서 코딩 에이전트에게 맡긴 일과 직접 판단한 일을 정리합니다.
+author: x-0o0
 cover: archive-building.jpg
 ---
 

@@ -31,13 +31,13 @@ date: 2026-10-06
 category: 개발일지        # 개발일지 | 작업 기록 | 릴리스 노트
 summary: 한 줄 요약
 cover: some-cover.webp    # src/assets/images 안의 파일 이름
-author: taekssi           # 선택. 적으면 글 화면 머리 줄에 "글 taekssi"로 보여요
+author: taekssi           # 글쓴이의 GitHub 이름. 글 화면 머리 줄에 "글 taekssi"로 보여요
 ---
 ```
 
 - **개발일지는 모두 같은 커버를 써요.** `개발일지` 글은 `cover`를 비워 두면 자동으로 `devlog-cover.webp`가 들어가요. 다른 그림을 적으면 빌드가 실패해요. 이 규칙은 `src/content.config.ts`에 들어 있어요.
 - 다른 카테고리는 `src/assets/images/`에 그림을 넣고 `cover`에 파일 이름을 적어요.
-- `author`는 선택이에요. 운영자가 아닌 사람이 쓴 글에 적어요. 실명 대신 공개해도 되는 필명을 써요.
+- `author`: 글쓴이의 GitHub 이름(프로필에 보이는 닉네임). 실명 대신 필명도 돼요. 모든 글에 적어요(운영자 글은 `x-0o0`). 적으면 글 화면 머리 줄에 "글 <이름>"으로 보여요.
 - 쓰지 않게 된 그림 파일도 지우지 말고 둬요.
 - 톤은 Apple Developer Article처럼 써요.
   - 동사형 제목, 한 줄 요약, 개요, 작업형 소제목

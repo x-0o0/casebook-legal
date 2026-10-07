@@ -3,6 +3,7 @@ title: "개발자 패러다임 - Agentic Coding 시대에 개발 역량 다시 �
 date: 2026-10-07
 category: 작업 기록
 summary: Casebook을 만들며 겪은 일을 바탕으로, 개발자에게 기대하는 역량이 도메인 지식에 '프롬프트 설계'가 더해지는 쪽으로 넓어지고 있다는 생각을 정리합니다.
+author: x-0o0
 cover: agentic-coding-paradigm-cover.webp
 ---
 

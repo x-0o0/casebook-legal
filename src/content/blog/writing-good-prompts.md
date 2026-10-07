@@ -3,6 +3,7 @@ title: "코딩 에이전트에게 좋은 프롬프트 쓰기"
 date: 2026-10-06
 category: 작업 기록
 summary: Casebook을 만들며 실제로 쓴 프롬프트를 예로, 한 번에 맞은 요청과 다시 작업하게 만든 요청의 차이를 정리합니다.
+author: x-0o0
 cover: writing-good-prompts-cover.webp
 ---
 
