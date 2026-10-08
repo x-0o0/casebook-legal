@@ -15,8 +15,7 @@ Casebook은 iPhone · iPad · Mac · Apple Vision Pro에서 돌아가는 추리 
 
 ## 전체 구조
 
-![앱, Supabase, Slack, Xcode Cloud, App Store Connect, GitHub, GitHub Pages, Claude Code의 관계도](../../assets/images/blog-diagram-1-structure-light.png)
-![앱, Supabase, Slack, Xcode Cloud, App Store Connect, GitHub, GitHub Pages, Claude Code의 관계도](../../assets/images/blog-diagram-1-structure-dark.png)
+![앱, Supabase, Slack, Xcode Cloud, App Store Connect, GitHub, GitHub Pages, Claude Code의 관계도](../../assets/images/blog-diagram-1-structure.png)
 
 | 구성 요소 | 맡은 일 |
 |---|---|
