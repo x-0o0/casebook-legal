@@ -5,13 +5,15 @@ import TableOfContents from '../components/TableOfContents.astro';
 interface Props {
   /** 탭 제목 */
   title: string;
+  /** 페이지 요약(description 메타). 비우면 사이트 기본 문구 */
+  description?: string;
   current: 'guide' | 'privacy' | 'terms';
   toc: { id: string; text: string }[];
 }
 
-const { title, current, toc } = Astro.props;
+const { title, description, current, toc } = Astro.props;
 ---
-<BaseLayout title={title} current={current}>
+<BaseLayout title={title} description={description} current={current}>
   <section class="intro">
     <div class="wrap">
       <slot name="header" />
