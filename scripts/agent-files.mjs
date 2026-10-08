@@ -1,8 +1,9 @@
 // 사건 제작 가이드를 AI 에이전트용 파일로 만든다.
 //   agent/case-guide-criteria.md (기준 원본)
-//   → public/casebook-case-guide-prompt.md     (어느 AI에나 붙여 넣는 프롬프트)
-//   → public/casebook-case-guide/SKILL.md      (Claude Code에 넣는 스킬)
-//   → public/casebook-case-guide-skill.zip     (Claude 앱에 올리는 스킬, 폴더째 압축)
+//   → public/casebook-press-prompt.md          (어느 AI에나 붙여 넣는 프롬프트)
+//   → public/casebook-press-skill/SKILL.md     (Claude Code에 넣는 스킬)
+//   → public/casebook-press-skill.zip          (Claude 앱에 올리는 스킬, 폴더째 압축)
+// 이름에는 항상 -skill · -prompt를 붙인다. casebook-press만 단독으로 쓰지 않는다.
 // 가이드 페이지(src/pages/guide.astro) 본문을 고치면 기준 원본도 같이 고치고 `npm run agent-files`를 실행한다.
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -13,7 +14,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const criteria = readFileSync(join(root, 'agent/case-guide-criteria.md'), 'utf8').trim();
 const pub = join(root, 'public');
 
-const SKILL_NAME = 'casebook-case-guide';
+const SKILL_NAME = 'casebook-press-skill';
+const PROMPT_FILE = 'casebook-press-prompt.md';
+const ZIP_FILE = `${SKILL_NAME}.zip`;
 const SKILL_DESCRIPTION =
   'Casebook 추리 게임의 사건(.casedoc)을 만들거나 고치거나 검토할 때 쓰는 제작 기준이에요. ' +
   '정답과 진상 시간표, 난이도(하 · 중 · 상), 의심 나누기, 단서 배치, 진술 · 선택지 · 힌트 쓰기, 표현 기준, 올리기 전 점검을 다뤄요. ' +
@@ -50,10 +53,10 @@ Casebook 사건을 만들거나 검토할 때 아래 "사건 제작 기준"을 �
 ${criteria}
 `;
 
-writeFileSync(join(pub, 'casebook-case-guide-prompt.md'), prompt);
+writeFileSync(join(pub, PROMPT_FILE), prompt);
 mkdirSync(join(pub, SKILL_NAME), { recursive: true });
 writeFileSync(join(pub, SKILL_NAME, 'SKILL.md'), skill);
-rmSync(join(pub, 'casebook-case-guide-skill.zip'), { force: true });
-// 압축 안에 폴더째(casebook-case-guide/SKILL.md) 들어가게 한다. -X는 macOS 확장 속성을 넣지 않는다.
-execFileSync('zip', ['-X', '-r', 'casebook-case-guide-skill.zip', SKILL_NAME], { cwd: pub, stdio: 'inherit' });
+rmSync(join(pub, ZIP_FILE), { force: true });
+// 압축 안에 폴더째(casebook-press-skill/SKILL.md) 들어가게 한다. -X는 macOS 확장 속성을 넣지 않는다.
+execFileSync('zip', ['-X', '-r', ZIP_FILE, SKILL_NAME], { cwd: pub, stdio: 'inherit' });
 console.log('agent files written to public/');
