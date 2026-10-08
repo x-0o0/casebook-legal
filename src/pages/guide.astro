@@ -20,6 +20,21 @@ const toc = [
 <Fragment slot="header">
   <h1>사건 제작 가이드</h1>
   <p>공공 사건기록보관소에 올릴 사건을 제작하는 방법과 제작 과정에서 지키면 좋은 기준을 제공합니다.</p>
+  <!-- 내려받는 파일은 scripts/agent-files.mjs가 agent/case-guide-criteria.md로 만든다. 이 페이지 본문을 고치면 함께 고친다. -->
+  <section class="agent" aria-labelledby="agent-title">
+    <h2 id="agent-title">AI 에이전트에서 쓰기</h2>
+    <p class="agent-lede">이 기준을 AI 에이전트에 넣어 두면, 사건을 함께 만들거나 검토할 때 같은 기준을 따라요.</p>
+    <div class="downloads">
+      <a class="pill dl-main" href={url('casebook-case-guide-skill.zip')} download>Claude 스킬 받기 (.zip)</a>
+      <a class="dl" href={url('casebook-case-guide/SKILL.md')} download>SKILL.md 받기 ›</a>
+      <a class="dl" href={url('casebook-case-guide-prompt.md')} download>프롬프트 받기 (.md) ›</a>
+    </div>
+    <dl class="how">
+      <div><dt>Claude 앱</dt><dd>설정의 스킬 메뉴에서 zip 파일을 그대로 올려요. 코드 실행 기능이 켜져 있어야 해요.</dd></div>
+      <div><dt>Claude Code</dt><dd><code>~/.claude/skills/casebook-case-guide/</code> 폴더에 SKILL.md를 넣어요. 한 프로젝트에서만 쓰려면 그 프로젝트의 <code>.claude/skills/casebook-case-guide/</code>에 넣어요.</dd></div>
+      <div><dt>그 밖의 AI</dt><dd>프롬프트 파일 내용을 ChatGPT · Gemini 같은 AI의 대화창에 붙여 넣고, 맨 끝 "내 사건 아이디어:"에 아이디어를 적어요.</dd></div>
+    </dl>
+  </section>
 </Fragment>
 
 <div class="summary">
@@ -180,3 +195,38 @@ const toc = [
 
 <footer>앱의 사건 형식이나 채점 방식이 바뀌면 이 기준도 함께 고쳐요.</footer>
 </LegalLayout>
+
+<style>
+  .agent {
+    margin-top: 28px;
+    padding: 28px 32px;
+    border-radius: var(--radius);
+    background: var(--tile);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .agent h2 { margin: 0; font-size: 24px; line-height: 1.2; }
+  .agent .agent-lede { margin: 0; font-size: 17px; color: var(--fg-2); }
+  .downloads { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-top: 4px; }
+  .dl-main { min-height: 44px; padding: 0 22px; font-size: 17px; }
+  .dl { padding: 10px 0; font-size: 17px; text-decoration: none; }
+  .how { margin: 6px 0 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+  .how div { display: flex; flex-wrap: wrap; gap: 2px 16px; padding-top: 10px; border-top: 1px solid var(--line-soft); }
+  .how dt { flex: 0 0 110px; font-weight: 600; color: var(--fg); }
+  .how dd { flex: 1 1 280px; min-width: 0; margin: 0; color: var(--fg-2); }
+  .how code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: var(--bg-alt);
+    font: 0.9em ui-monospace, 'SF Mono', Menlo, monospace;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 734px) {
+    .agent { padding: 22px 20px; }
+    .agent h2 { font-size: 21px; }
+    .downloads { flex-direction: column; align-items: flex-start; gap: 0; }
+    .dl-main { margin-bottom: 6px; }
+  }
+</style>

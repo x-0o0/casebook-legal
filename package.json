@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "agent-files": "node scripts/agent-files.mjs"
   },
   "dependencies": {
     "astro": "^7.3.5"

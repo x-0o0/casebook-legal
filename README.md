@@ -54,6 +54,15 @@ author: taekssi           # 글쓴이의 GitHub 이름. 글 화면 머리 줄에
 - 아직 앱에 없는 기능은 쓰지 않아요.
 - 예시는 지어낸 사건으로만 들고, 공개 전 사건의 정답이나 기존 작품의 설정은 쓰지 않아요.
 
+### 사건 제작 가이드와 AI 에이전트용 파일
+
+`src/pages/guide.astro`(사건 제작 가이드)의 기준은 AI 에이전트용 파일로도 내려받을 수 있어요.
+
+- 기준 원본: `agent/case-guide-criteria.md`
+- 만드는 파일: `public/casebook-case-guide-prompt.md`(프롬프트), `public/casebook-case-guide/SKILL.md`(Claude Code 스킬), `public/casebook-case-guide-skill.zip`(Claude 앱 스킬)
+- **가이드 본문을 고치면 기준 원본도 같은 뜻으로 고치고 `npm run agent-files`를 실행해 세 파일을 다시 만들어요.** 만들어진 파일은 직접 고치지 않아요.
+- 스킬 형식: `name`은 폴더 이름과 같은 영문 소문자 · 하이픈(64자 이하), `description`은 1,024자 이하로 언제 쓰는지 적어요. zip 안에는 폴더째(`casebook-case-guide/SKILL.md`) 들어가야 해요.
+
 ### 그 밖에
 
 - 홈에는 이메일 주소를 쓰지 않아요. 연락처는 처리방침의 "11. 개인정보 보호책임자"에만 있어요.
