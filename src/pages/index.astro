@@ -14,19 +14,20 @@ const posts = (await getPosts()).slice(0, 2);
       <p class="product">Casebook</p>
       <h1>숨겨진 사건의 진실.</h1>
       <p class="lede">사건 현장을 조사하고 누가 · 왜 · 어떻게를 추리하세요. 직접 만든 사건은 공공 사건기록보관소에서 다른 탐정과 나눠요.</p>
+      <!-- 받기 묶음(버튼 · 베타 링크 · 플랫폼)과 블로그 링크를 한 가운데 축에 세로로 쌓는다. -->
       <div class="cta">
         {APP_STORE_URL ? (
-          <div class="get">
+          <>
             <a class="pill store" href={APP_STORE_URL}>App Store에서 받기</a>
-            {TESTFLIGHT_URL && <a class="beta" href={TESTFLIGHT_URL} target="_blank" rel="noopener">TestFlight 공개 베타 참여 ›</a>}
-          </div>
+            {TESTFLIGHT_URL && <a class="link beta" href={TESTFLIGHT_URL} target="_blank" rel="noopener">TestFlight 공개 베타 참여 ›</a>}
+          </>
         ) : TESTFLIGHT_URL && (
           <a class="pill store" href={TESTFLIGHT_URL} target="_blank" rel="noopener">베타 체험하기 (TestFlight)</a>
         )}
-        <a class="more" href={url('blog/')}>개발 블로그 읽기 ›</a>
+        <!-- Mac 앱이 출시되면 Mac을 다시 넣는다. -->
+        <p class="platforms">iPhone · iPad · Apple Vision Pro</p>
+        <a class="link blog" href={url('blog/')}>개발 블로그 읽기 ›</a>
       </div>
-      <!-- Mac 앱이 출시되면 Mac을 다시 넣는다. -->
-      <p class="platforms">iPhone · iPad · Apple Vision Pro</p>
       <Image class="hero-image" src={archive} alt="빗속의 공공 사건기록보관소 건물" widths={[640, 980, 1960]} sizes="(max-width: 1024px) 100vw, 980px" loading="eager" />
     </div>
   </section>
@@ -100,15 +101,16 @@ const posts = (await getPosts()).slice(0, 2);
   .product { margin: 0; font-size: 21px; font-weight: 600; color: var(--dark-muted); }
   h1 { margin: 0; font-size: 56px; line-height: 1.07; letter-spacing: -0.005em; }
   .lede { margin: 6px 0 0; max-width: 640px; font-size: 21px; line-height: 1.38; }
-  .cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 28px; margin-top: 18px; }
-  .store { min-height: 44px; padding: 0 22px; background: var(--dark-fg); color: #1d1d1f; }
+  /* 버튼 → 베타 링크 → 플랫폼은 촘촘하게, 블로그 링크는 한 칸 더 띄워 묶음을 나눈다.
+     링크는 위아래 여백 10px로 누르기 쉬운 높이를 두고, 그만큼 바깥 간격을 줄여 보이는 간격을 맞춘다. */
+  .cta { display: flex; flex-direction: column; align-items: center; margin-top: 22px; }
+  .store { min-height: 44px; padding: 0 22px; background: var(--dark-fg); color: #1d1d1f; font-size: 17px; }
   .store:hover { color: #1d1d1f; }
-  .get { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .beta { color: var(--dark-link); font-size: 14px; text-decoration: none; padding: 8px 0; }
-  .beta:hover { color: var(--dark-fg); }
-  .hero .more { color: var(--dark-link); }
-  .hero .more:hover { color: var(--dark-fg); }
-  .platforms { margin: 8px 0 0; font-size: 14px; color: var(--dark-muted); }
+  .link { display: block; padding: 10px 0; font-size: 17px; line-height: 1.24; color: var(--dark-link); text-decoration: none; }
+  .link:hover { color: var(--dark-fg); }
+  .beta { margin-top: 4px; }
+  .platforms { margin: 4px 0 0; font-size: 14px; line-height: 1.3; color: var(--dark-muted); }
+  .blog { margin-top: 16px; }
   .hero-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-top: 40px; border-radius: var(--radius) var(--radius) 0 0; }
 
   .home { background: var(--bg-alt); }
@@ -144,7 +146,7 @@ const posts = (await getPosts()).slice(0, 2);
     .product { font-size: 17px; }
     h1 { font-size: 36px; line-height: 1.11; }
     .lede { font-size: 17px; }
-    .cta { flex-direction: column; gap: 4px; margin-top: 12px; }
+    .cta { margin-top: 16px; }
     .hero-image { aspect-ratio: 4 / 3; margin-top: 20px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
     .sections { padding-top: 48px; padding-bottom: 64px; gap: 48px; }
     section:not(.hero) { gap: 16px; }
