@@ -116,6 +116,13 @@ img[data-cover='devlog-cover.webp'] { object-position: 30% 50%; }
   .prose img[src*='-light.'] { display: none; }
   .prose img[src*='-dark.'] { display: block; }
 }
+/* 본문 그림을 감싼 "원본 크기로 보기" 링크 (PostLayout의 스크립트가 만든다) */
+.prose a.zoom { display: block; border-radius: var(--radius-sm); cursor: zoom-in; }
+.prose a.zoom.only-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  .prose a.zoom.only-light { display: none; }
+  .prose a.zoom.only-dark { display: block; }
+}
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 
 .table-wrap {

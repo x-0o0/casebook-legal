@@ -52,6 +52,24 @@ const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text
   </div>
 </BaseLayout>
 
+<script>
+  // 글 본문 그림을 누르면 원본 그림을 새 탭에서 연다. (커버는 본문 밖이라 해당 없음)
+  // 밝은 · 어두운 쌍은 그림마다 링크를 따로 감싸고, 링크도 그림과 함께 숨겨서 지금 보이는 쪽만 누를 수 있다.
+  for (const img of document.querySelectorAll<HTMLImageElement>('.prose img')) {
+    if (img.closest('a')) continue;
+    const link = document.createElement('a');
+    link.href = img.currentSrc || img.src;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.className = 'zoom';
+    link.setAttribute('aria-label', img.alt ? `원본 크기로 보기: ${img.alt}` : '원본 크기로 보기');
+    if (img.src.includes('-light.')) link.classList.add('only-light');
+    if (img.src.includes('-dark.')) link.classList.add('only-dark');
+    img.replaceWith(link);
+    link.append(img);
+  }
+</script>
+
 <style>
   .columns {
     padding-top: 48px;
