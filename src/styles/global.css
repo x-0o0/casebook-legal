@@ -109,6 +109,13 @@ img[data-cover='devlog-cover.webp'] { object-position: 30% 50%; }
 @media (prefers-color-scheme: dark) {
   .prose pre.astro-code, .prose pre.astro-code span { color: var(--shiki-dark) !important; }
 }
+.prose img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
+/* 밝은 · 어두운 버전이 있는 그림은 파일 이름 끝을 -light · -dark로 맞춰 둘 다 넣는다. 시스템 설정에 맞는 쪽만 보인다. */
+.prose img[src*='-dark.'] { display: none; }
+@media (prefers-color-scheme: dark) {
+  .prose img[src*='-light.'] { display: none; }
+  .prose img[src*='-dark.'] { display: block; }
+}
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 
 .table-wrap {
