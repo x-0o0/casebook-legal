@@ -24,8 +24,7 @@ const posts = (await getPosts()).slice(0, 2);
         ) : TESTFLIGHT_URL && (
           <a class="pill store" href={TESTFLIGHT_URL} target="_blank" rel="noopener">베타 체험하기 (TestFlight)</a>
         )}
-        <!-- Mac 앱이 출시되면 Mac을 다시 넣는다. -->
-        <p class="platforms">iPhone · iPad · Apple Vision Pro</p>
+        <p class="platforms">iPhone · iPad · Mac · Apple Vision Pro</p>
         <a class="link blog" href={url('blog/')}>개발 블로그 읽기 ›</a>
       </div>
       <Image class="hero-image" src={archive} alt="빗속의 공공 사건기록보관소 건물" widths={[640, 980, 1960]} sizes="(max-width: 1024px) 100vw, 980px" loading="eager" />
